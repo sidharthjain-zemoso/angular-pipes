@@ -4,9 +4,12 @@ import { Pipe, PipeTransform } from "@angular/core";
   name: "shorten",
 })
 export class ShortenPipe implements PipeTransform {
-  transform(value: string, ...args: unknown[]): unknown {
-    if (value.length > 10) {
-      return value.substr(0, 10) + "...";
+  transform(value: string, limit: number, doUpperCase: boolean): string {
+    if (value.length > limit) {
+      value = value.substr(0, limit) + "...";
+    }
+    if (doUpperCase) {
+      value = value.toUpperCase();
     }
     return value;
   }
